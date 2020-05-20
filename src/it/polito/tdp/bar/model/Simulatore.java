@@ -1,6 +1,7 @@
 package it.polito.tdp.bar.model;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.PriorityQueue;
@@ -16,8 +17,6 @@ public class Simulatore {
 	private int tavoliTotali;
 	
 	LinkedList<Tavolo> tavoli=new LinkedList<Tavolo>();
-	LocalTime oraInizio= LocalTime.of(8, 0);
-	LocalTime oraFine= LocalTime.of(20, 0);
 	PriorityQueue<Evento> queue= new PriorityQueue<Evento>();
 
 	Random rand=new Random();
@@ -32,11 +31,12 @@ public class Simulatore {
 		tavoli.add(new Tavolo(4,8));
 		tavoli.add(new Tavolo(2,10));
 		queue.clear();
-		LocalTime ora=oraInizio;
-		for(int k=0; k<1000;k++) {
+		LocalDateTime ora=LocalDateTime.of(2000, 1, 1, 0, 0);
+		for(int k=0; k<2000;k++) {
 			int durata=rand.nextInt((10-1)+1)+1;
-			ora=ora.plus(Duration.ofMinutes(durata));
-			queue.add(new Evento(ora,TipoEvento.ARRIVO_GRUPPO_CLIENTI));
+			ora=ora.plusMinutes(durata);
+			Evento e=new Evento(ora,TipoEvento.ARRIVO_GRUPPO_CLIENTI);
+			queue.add(e);
 		}
 	}
 
@@ -52,9 +52,9 @@ public class Simulatore {
 				this.tavoliTotali++;
 				Tavolo t=this.cercaTavolo(nPersone);
 				if(t==null) {
-					float tolleranza=rand.nextFloat()*9/10;
+					int tolleranza=rand.nextInt(10);
 					
-					if(rand.nextFloat()>tolleranza) {
+					if(tolleranza==0) {
 						numeroClientiInsoddisfatti=numeroClientiInsoddisfatti+nPersone;
 						this.tavoliInsoddisfatti++;
 					}

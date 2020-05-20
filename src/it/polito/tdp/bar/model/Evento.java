@@ -3,10 +3,11 @@ package it.polito.tdp.bar.model;
 import java.time.LocalTime;
 import java.util.Random;
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class Evento implements Comparable<Evento> {//ATTENZIONE: Comparable compara l'oggetto sè stesso ad un altro, Comparator compara 2 oggetti tra loro
 	
-	private LocalTime tempo;
+	private LocalDateTime tempo;
 	private TipoEvento tipo;
 	private Tavolo tavolo;
 	
@@ -17,14 +18,14 @@ public class Evento implements Comparable<Evento> {//ATTENZIONE: Comparable comp
 	
 	
 	
-	public Evento(LocalTime lt, TipoEvento tipo) {
-		tempo=lt;
+	public Evento(LocalDateTime lt, TipoEvento tipo) {
+		this.tempo=lt;
 		this.tipo=tipo;
 	}
 	
 
 
-	public Evento(LocalTime plus, TipoEvento partenzaGruppoClienti, Tavolo t) {
+	public Evento(LocalDateTime plus, TipoEvento partenzaGruppoClienti, Tavolo t) {
 		tempo=plus;
 		this.tipo=partenzaGruppoClienti;
 		this.tavolo=t;
@@ -38,7 +39,7 @@ public class Evento implements Comparable<Evento> {//ATTENZIONE: Comparable comp
 
 
 
-	public LocalTime getTempo() {
+	public LocalDateTime getTempo() {
 		return tempo;
 	}
 
