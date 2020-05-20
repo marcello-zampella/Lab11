@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.Random;
 import java.time.Duration;
 
-public class Evento implements Comparable<Evento> {
+public class Evento implements Comparable<Evento> {//ATTENZIONE: Comparable compara l'oggetto sè stesso ad un altro, Comparator compara 2 oggetti tra loro
 	
 	private LocalTime tempo;
 	private TipoEvento tipo;
