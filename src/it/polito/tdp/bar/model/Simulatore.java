@@ -35,7 +35,6 @@ public class Simulatore {
 		LocalTime ora=oraInizio;
 		for(int k=0; k<1000;k++) {
 			int durata=rand.nextInt((10-1)+1)+1;
-			System.out.println(durata);
 			ora=ora.plus(Duration.ofMinutes(durata));
 			queue.add(new Evento(ora,TipoEvento.ARRIVO_GRUPPO_CLIENTI));
 		}
@@ -45,7 +44,6 @@ public class Simulatore {
 		
 		while(!queue.isEmpty()) {
 			Evento ev=queue.poll();
-			System.out.println(ev);
 			switch(ev.getTipo()) {
 			
 			case ARRIVO_GRUPPO_CLIENTI:
